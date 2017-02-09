@@ -1,122 +1,94 @@
-syntax on
 
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set ai
-set vb
-set nocompatible
-set nohlsearch
-set autoindent
-set smartindent
+execute pathogen#infect()
+
+syntax on
+syntax enable
+set hidden
 set ruler
-set incsearch
 set fileformats=unix
 set nosmarttab
-let loaded_matchparen = 1
+set nocompatible
+set nohlsearch
+set incsearch
+set tabstop=4
+set shiftwidth=4
 set background=dark
+colorscheme solarized
+set completeopt-=preview
+
 set encoding=utf8
 set fileencodings=utf8
 set termencoding=utf8
 set enc=utf-8
 set ffs=unix,dos
-"filetype on
-"filetype plugin on
 
-"
-" give a dialog when a command fails.
-"
-set confirm
+set t_Co=256
 
-"
+let g:tmux_navigator_save_on_switch = 1
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> {Left-mapping} :TmuxNavigateLeft<cr>
+nnoremap <silent> {Down-Mapping} :TmuxNavigateDown<cr>
+nnoremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
+nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
+nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+
+
+"set cmdheight=2
+
+" solarized options
+let g:solarized_termcolors=256
+let g:solarized_visibility="high"
+let g:solarized_contrast="high"
+let g:solarized_bold=0
+let g:solarized_termtrans=1
+
+let loaded_matchparen = 1
+
+let g:neocomplete#enable_at_startup = 1
+
+filetype plugin indent on
+
+" vimcommander.vim - https://github.com/lpenz/vimcommander
+noremap <silent> \M :cal VimCommanderToggle()<CR>
+
+set nobackup
+
 " minibufexpl.vim
-"
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
 
-"
-" Python
-"
-let python_highlight_all=1 "highlight everything possible in python
-let python_highlight_space_errors=1 "except spacing issues
+" Go
+let g:go_fmt_command = "gofmt"
+let g:go_disable_autoinstall = 0
+let g:go_fmt_autosave = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
 
-"
-" Show extra spaces
-"
-let c_space_errors=1
-highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-
-au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-au InsertLeave * match ExtraWhitespace /\s\+$/
-
-"
-" map the escape to '
-"
-":imap ` <esc>
-
-"
-" vimcommander.vim
-"
-noremap <silent> \M :cal VimCommanderToggle()<CR>
-
-set nobackup
-
-"
-" buffer switching
-"
-nmap > :bn<CR>
-nmap < :bp<CR>
-
-augroup filetypedetect au BufNewFile,BufRead *.lsl setf lsl augroup END
-
-
-au BufRead,BufNewFile *.ftl set filetype=ftl
-
-
-
-if has("autocmd")
-    autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-    setlocal completefunc=javacomplete#CompleteParamsInfo
-endif
-
-" Use for javat
-if has("autocmd")
-    augroup javat
-        autocmd BufRead *.javat set filetype=java
-    augroup END
-endif
-
-" Use for arff
-if has("autocmd")
-    augroup arff
-        autocmd BufRead *.arff set syntax=arff
-    augroup END
-endif
-
-" Use for tld files
-if has("autocmd")
-    augroup thtml
-        autocmd BufRead *.tld set filetype=xml
-    augroup END
-endif
-
-"
 " remove ^M
-"
 fun RmCr()
     let oldLine=line('.')
     exe ":%s/\r//g"
     exe ':' . oldLine
 endfun
 
-"
 " Remove trailing spaces
-"
 fun Rw()
     %s/\s*$//
     ''
 endfun
+
+" Show extra spaces
+let c_space_errors=1
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+au InsertLeave * match ExtraWhitespace /\s\+$/
+
 

@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/etc/update-motd.d'
+let g:netrw_dirhist_2='/home/rn/.vim/bundle/vim-go'
+let g:netrw_dirhist_3='/home/rn/dev/khango/generator'
+let g:netrw_dirhist_4='/home/rn/dev/summitdb/cmd/summitdb-server'
+let g:netrw_dirhist_5='/home/rn/dev/go-get-libs/src/github.com/deftlabs/khango/engine'
